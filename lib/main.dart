@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -27,6 +25,7 @@ class _MyHomePageState extends State<MyHomePage> {
           title: Text("User Info"),
         ),
         body: Container(
+          //height: 300,
           child: FutureBuilder(
             future: getData(),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -41,22 +40,25 @@ class _MyHomePageState extends State<MyHomePage> {
                 case ConnectionState.done:
                   if (snapshot.data != null) {
                     return ListView.builder(
+                      //scrollDirection: Axis.horizontal,
                       shrinkWrap: true,
                       itemCount: snapshot.data.length,
                       itemBuilder: (context, index) {
                         return Container(
                           color: Colors.blueGrey[400],
+                          //  height: 50,
                           child: Padding(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 16.0, vertical: 4.0),
                             child: Card(
+                              // semanticContainer: true,
+                              //clipBehavior: Clip.antiAliasWithSaveLayer,
                               elevation: 5,
                               color: Colors.grey,
                               child: Padding(
                                 padding: const EdgeInsets.all(16.0),
                                 child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Column(
                                       //Left Side Collumn
@@ -150,17 +152,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                               ),
                                             ),
                                           ],
-                                        )
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      width: 20,
-                                    ),
-                                    Column(
-                                      //Right Side Collumn
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
+                                        ),
                                         Row(
                                           children: [
                                             Icon(
@@ -200,47 +192,13 @@ class _MyHomePageState extends State<MyHomePage> {
                                             ),
                                           ],
                                         ),
-                                        SizedBox(
-                                          height: 4.0,
-                                        ),
-                                        Row(
-                                          children: [
-                                            SizedBox(
-                                              width: 24.0,
-                                            ),
-                                            Text(
-                                              "User Name :" +
-                                                  snapshot.data[index].username
-                                                      .toString(),
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 4.0,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Icon(
-                                              Icons.email_rounded,
-                                              color: Colors.white,
-                                            ),
-                                            SizedBox(
-                                              width: 4.0,
-                                            ),
-                                            Text(
-                                              "Email Id : " +
-                                                  snapshot.data[index].email
-                                                      .toString(),
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                              ),
-                                            ),
-                                          ],
-                                        )
                                       ],
+                                    ),
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    SizedBox(
+                                      height: 4.0,
                                     ),
                                   ],
                                 ),
